@@ -9,3 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Got tag name ${{ github.event.release.body }}"
+      - name: Send message to Slack API
+        uses: archive/github-actions-slack@v2.0.0
+        id: notify
+        with:
+          slack-bot-user-oauth-access-token: xoxb-3738022074964-4406087949249-nxQNLMl0zqjE6LpF0U6Bk2ht
+          slack-channel: C04BCQCRW30
+          slack-text: Hello! Event ${{ github.event.release.body }}" 🤓
