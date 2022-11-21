@@ -9,19 +9,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Slack Notification
-        uses: archive/github-actions-slack@v2.0.0
+        uses: slackapi/slack-github-action@v1.23.0
         with:
-          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
-          slack-channel: C03TT70H0LE
+          channel-id: "C03TT70H0LE"
           payload: |
             {
               "text": "Deployment finished (Completed)",
               "attachments": [
                 {
-                  "pretext": "A New Release has been deployed. Release Name: ${{ github.event.release.name  }}"
-                },
-                {
-                  "pretext": "A New Release has been deployed. Release Name: ${{ github.event.release.body  }}"
+                  "pretext": "Deployment finished",
+                  "color": "28a745",
+                  "fields": [
+                    {
+                      "title": "Status",
+                      "short": true,
+                      "value": "Completed"
+                    }
+                  ]
                 }
               ]
             }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
