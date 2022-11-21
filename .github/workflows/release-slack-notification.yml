@@ -14,33 +14,10 @@ jobs:
           channel-id: "C03TT70H0LE"
           payload: |
             {
-              "text": "Deployment finished (Completed)",
+              "text": "A New Release has been deployed. Release Name: ${{ github.event.release.name  }}",
               "attachments": [
                 {
-                  "pretext": "Deployment finished",
-                  "color": "28a745",
-                  "fields": [
-                    {
-                      "title": "Status",
-                      "short": true,
-                      "value": "Completed"
-                    }
-                  ]
-                }
-              ]
-            },{
-              "text": "Deployment finished (Completed)",
-              "attachments": [
-                {
-                  "pretext": "Deployment finished",
-                  "color": "28a745",
-                  "fields": [
-                    {
-                      "title": "Status",
-                      "short": true,
-                      "value": "Completed"
-                    }
-                  ]
+                  "pretext": "${{ github.event.release.body }}"
                 }
               ]
             }
