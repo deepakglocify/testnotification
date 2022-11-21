@@ -1,10 +1,38 @@
-name: After Release
+name: 🚀 Deploy on Published Release
 
 on:
   release:
     types: [published]
 
 jobs:
+  pre-release:
+    name: 🚀 Deploy to Production
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Slack Notification
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          channel-id: "C03TT70H0LE"
+          payload: |
+            {
+              "text": "Pre realease",
+              "attachments": [
+                {
+                  "pretext": "Deployment finished",
+                  "color": "28a745",
+                  "fields": [
+                    {
+                      "title": "Status",
+                      "short": true,
+                      "value": "Completed"
+                    }
+                  ]
+                }
+              ]
+            }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
   after-release:
     runs-on: ubuntu-latest
     steps:
