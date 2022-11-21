@@ -12,18 +12,6 @@ jobs:
         uses: slackapi/slack-github-action@v1.23.0
         with:
           channel-id: "C03TT70H0LE"
-          payload: |
-            {
-              "text": "A New Release has been deployed. Release Name: ${{ github.event.release.name  }}",
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "GitHub Action build result: ${{ github.event.release.body  }}"
-                  }
-                }
-              ]
-            }
+          slack-message: "A New Release has been deployed. Release Name: ${{ github.event.release.name }}\n${{ github.event.release.body }}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
