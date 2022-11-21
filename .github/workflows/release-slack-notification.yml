@@ -8,11 +8,20 @@ jobs:
   after-release:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Got tag name ${{ github.event.release.body }}"
-      - name: Send message to Slack API
-        uses: archive/github-actions-slack@v2.0.0
-        id: notify
+      - name: Slack Notification
+        uses: slackapi/slack-github-action@v1.23.0
         with:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
           slack-channel: C03TT70H0LE
-          slack-text: Name "${{ github.event.release.name  }}" Description "${{ github.event.release.body }}"
+          payload: |
+            {
+              "text": "Deployment finished (Completed)",
+              "attachments": [
+                {
+                  "pretext": "A New Release has been deployed. Release Name: ${{ github.event.release.name  }}"
+                },
+                {
+                  "pretext": "A New Release has been deployed. Release Name: ${{ github.event.release.body  }}"
+                }
+              ]
+            }
