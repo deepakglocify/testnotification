@@ -17,7 +17,15 @@ jobs:
               "text": "A New Release has been deployed. Release Name: ${{ github.event.release.name  }}",
               "attachments": [
                 {
-                  "pretext": "${{ github.event.release.body }}"
+                  "pretext": "${{ github.event.release.body }}",
+                  "color": "28a745",
+                  "fields": [
+                    {
+                      "title": "Status",
+                      "short": true,
+                      "value": "Completed"
+                    }
+                  ]
                 }
               ]
             }
