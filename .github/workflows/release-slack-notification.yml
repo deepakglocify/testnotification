@@ -15,17 +15,13 @@ jobs:
           payload: |
             {
               "text": "A New Release has been deployed. Release Name: ${{ github.event.release.name  }}",
-              "attachments": [
+              "blocks": [
                 {
-                  "pretext": "${{ github.event.release.body }}",
-                  "color": "28a745",
-                  "fields": [
-                    {
-                      "title": "Status",
-                      "short": true,
-                      "value": "Completed"
-                    }
-                  ]
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "GitHub Action build result: ${{ github.event.release.name  }}"
+                  }
                 }
               ]
             }
