@@ -14,5 +14,5 @@ jobs:
         id: notify
         with:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
-          slack-channel: C0238EXDWG0
+          slack-channel: C03TT70H0LE
           slack-text: Name "${{ github.event.release.name  }}" Description "${{ github.event.release.body }}"
